@@ -1,0 +1,65 @@
+mysql:
+  image: "mysql"
+  hostname: mysql   
+  expose:
+   - "3306"
+  ports:
+   - "23306:3306"
+
+discovery:
+  image: "discovery:1.0.0-SNAPSHOT"
+  hostname: discovery
+  ports:
+   - "9761:9761"
+
+config:
+  image: "config:1.0.0-SNAPSHOT"
+  hostname: config
+  links:
+    - discovery
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+  ports:
+    - "9888:9888"
+
+person:
+  image: person:1.0.0-SNAPSHOT
+  hostname: person
+  links:
+    - mysql
+    - discovery
+    - config
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+     spring.cloud.config.profile: docker
+     mysql: mysql
+  ports:
+    - "9082:9082"
+    
+some:
+  image: some:1.0.0-SNAPSHOT
+  hostname: some
+  links:
+    - discovery
+    - config
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+     spring.cloud.config.profile: docker
+  ports:
+    - "9083:9083"
+ 
+ui:
+  image: ui:1.0.0-SNAPSHOT
+  hostname: ui
+  links:
+    - discovery
+    - person
+    - some
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+  ports:
+    - "9080:9080"

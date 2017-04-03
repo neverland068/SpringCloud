@@ -1,0 +1,6 @@
+server:
+  port: 9082
+  
+mybatis:
+  config-location: "classpath:mybatis-config.xml"
+
