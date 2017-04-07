@@ -1,5 +1,9 @@
-discovery1:
+version: "2"
+services:
+ discovery1:
   image: "qf-discovery-facade:0.0.1-SNAPSHOT"
+  networks: 
+   - eureka-net
   hostname: discovery1
   ports:
    - "9761:9761"
@@ -8,8 +12,10 @@ discovery1:
      discovery.port: 9761
      discovery.defaultZone: http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
 
-discovery2:
+ discovery2:
   image: "qf-discovery-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net
   hostname: discovery2
   ports:
    - "9762:9762"
@@ -18,8 +24,10 @@ discovery2:
      discovery.port: 9762
      discovery.defaultZone: http://discovery1:9761/eureka/,http://discovery3:9763/eureka/
 
-discovery3:
+ discovery3:
   image: "qf-discovery-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net
   hostname: discovery3
   ports:
    - "9763:9763"
@@ -28,3 +36,6 @@ discovery3:
      discovery.port: 9763
      discovery.defaultZone: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/
 
+networks:
+  eureka-net:
+    driver: bridge
