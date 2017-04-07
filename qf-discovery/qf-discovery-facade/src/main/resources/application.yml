@@ -1,0 +1,9 @@
+server:
+  port: ${discovery.port:9761}
+
+eureka:
+  instance:
+    hostname: ${discovery.host:localhost}
+  client:
+    register-with-eureka: false
+    fetch-registry: false   

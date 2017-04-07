@@ -7,7 +7,7 @@ spring:
       discovery:
         enabled: true
         service-id: CONFIG
-      profile: ${spring.cloud.config.profile}
+      profile: ${spring.cloud.config.profile:}
 eureka:
   instance:
     non-secure-port: ${server.port:9083}

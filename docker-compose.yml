@@ -1,0 +1,61 @@
+mysql:
+  image: "mysql"
+  hostname: mysql   
+  expose:
+   - "3306"
+  ports:
+   - "23306:3306"
+  environment:
+     MYSQL_ROOT_PASSWORD: password
+
+discovery:
+  image: "qf-discovery-facade:0.0.1-SNAPSHOT"
+  hostname: discovery
+  ports:
+   - "9761:9761"
+  environment:
+     discovery.host: localhost
+     discovery.port: 9761
+
+config:
+  image: "qf-config-facade:0.0.1-SNAPSHOT"
+  hostname: config
+  links:
+    - discovery
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+     config.port: 9888
+  ports:
+    - "9888:9888"
+
+person:
+  image: "qf-person-facade:0.0.1-SNAPSHOT"
+  hostname: person
+  links:
+    - mysql
+    - discovery
+    - config
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+     person.config.profile: docker
+     mysql: mysql
+     person.port: 9082
+  ports:
+    - "9082:9082"
+    
+some:
+  image: "qf-some-facade:0.0.1-SNAPSHOT"
+  hostname: some
+  links:
+    - discovery
+    - config
+    - person
+  environment:
+     eureka.host: discovery
+     eureka.port: 9761
+     some.config.profile: docker
+     some.port: 9083
+  ports:
+    - "9083:9083"
