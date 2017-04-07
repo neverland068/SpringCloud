@@ -6,5 +6,4 @@ ADD runboot.sh /app/
 RUN bash -c 'touch /app/discovery.jar'
 WORKDIR /app
 RUN chmod a+x runboot.sh
-EXPOSE 9761
 CMD /app/runboot.sh

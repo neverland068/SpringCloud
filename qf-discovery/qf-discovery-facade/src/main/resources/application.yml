@@ -1,9 +1,15 @@
+spring:
+  application:
+    name: eureka-server-clustered
+
 server:
-  port: ${discovery.port:9761}
+  port: ${discovery.port}
 
 eureka:
   instance:
-    hostname: ${discovery.host:localhost}
+    hostname: ${discovery.host}
   client:
-    register-with-eureka: false
-    fetch-registry: false   
+    register-with-eureka: true
+    fetch-registry: true   
+    serviceUrl:
+      defaultZone: ${discovery.defaultZone}     
