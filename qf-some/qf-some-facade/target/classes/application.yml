@@ -1,2 +1,0 @@
-server:
-  port: ${some.port:9083}

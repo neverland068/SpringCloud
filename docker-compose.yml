@@ -36,6 +36,39 @@ services:
      discovery.port: 9763
      discovery.defaultZone: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/
 
+ config1:
+  image: "qf-config-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net  
+  hostname: config1
+  environment:
+     config.port: 9888
+     config.application.name: config
+     config.git.uri: https://github.com/lcgustc/qf-config/
+     config.git.username: liuchaogan@163.com
+     config.git.password: 6515579lcg308
+     config.env: docker
+     config.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+  ports:
+    - "9888:9888"
+
+ config2:
+  image: "qf-config-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net  
+  hostname: config2    
+  environment:
+     config.port: 9889
+     config.application.name: config
+     config.git.uri: https://github.com/lcgustc/qf-config/
+     config.git.username: liuchaogan@163.com
+     config.git.password: 6515579lcg308
+     config.env: docker
+     config.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+  ports:
+    - "9889:9889"
+
+     
 networks:
   eureka-net:
     driver: bridge
