@@ -1,5 +1,12 @@
 version: "2"
 services:
+ mysql:
+  image: "mysql"
+  hostname: mysql   
+  expose:
+   - "3306"
+  ports:
+   - "23306:3306"
  discovery1:
   image: "qf-discovery-facade:0.0.1-SNAPSHOT"
   networks: 
@@ -67,6 +74,36 @@ services:
      config.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
   ports:
     - "9889:9889"
+    
+ person1:
+  image: "qf-person-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net   
+  hostname: person1
+  volumes:
+   - /home/logs/logback/person1:/home/logs/logback/qf-person
+  environment:
+     person.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     person.config.profile: docker
+     mysql: mysql
+     person.port: 9082
+  ports:
+    - "9082:9082"
+
+ person2:
+  image: "qf-person-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net   
+  hostname: person2
+  volumes:
+   - /home/logs/logback/person2:/home/logs/logback/qf-person  
+  environment:
+     person.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     person.config.profile: docker
+     mysql: mysql
+     person.port: 9083
+  ports:
+    - "9083:9083"    
 
      
 networks:

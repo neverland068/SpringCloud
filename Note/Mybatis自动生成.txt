@@ -1,0 +1,4 @@
+cmd到D:\code\eif-risk\eif-risk-dal目录下
+到
+执行：
+java -jar  C:\Users\liuchaogang\.m2\repository\org\mybatis\generator\mybatis-generator-core\1.3.2\mybatis-generator-core-1.3.2.jar -configfile src/main/resources/generatorConfig.xml -overwrite
