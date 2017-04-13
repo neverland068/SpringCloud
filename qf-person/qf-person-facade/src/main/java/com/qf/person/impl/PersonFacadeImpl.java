@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,6 @@ import com.qf.person.domain.TUser;
 import com.qf.person.facade.PersonFacade;
 import com.qf.person.request.AddPersonRequest;
 import com.qf.person.request.DeletePersonRequest;
-import com.qf.person.request.SeletePersonRequest;
 import com.qf.person.request.UpdatePersonRequest;
 import com.qf.person.response.AddPersonResponse;
 import com.qf.person.response.DeletePersonResponse;
@@ -90,17 +90,17 @@ public class PersonFacadeImpl implements PersonFacade{
 
     }
 
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
-    public SelectPersonResponse<User> selectPerson(@RequestBody SeletePersonRequest seletePersonRequest) {
+    @RequestMapping(value = "/select/{id}", method = RequestMethod.GET)
+    public SelectPersonResponse<User> selectPerson(@PathVariable Long id) {
         SelectPersonResponse<User> response = new SelectPersonResponse<User>();
-        if(seletePersonRequest==null || seletePersonRequest.getPersonId() == null){
-            LOGGER.error("The parameter is invalid>>>>>>>>>>>>>>>>"+JSON.toJSONString(seletePersonRequest));
+        if(id==null){
+            LOGGER.error("The parameter is invalid>>>>>>>>>>>>>>>>");
             response.setResponseCode(ResponseCode.RC_PARAMETER_ERROR.getResponseCode());
             response.setResponseMessage(ResponseCode.RC_PARAMETER_ERROR.getResponseMessage());
             return response;
         }
         try{
-            TUser userDB = userService.selectUserById(seletePersonRequest.getPersonId() );
+            TUser userDB = userService.selectUserById(id);
             if(userDB != null){
                 User user = new User();
                 user.setUserName(userDB.getName());
@@ -129,7 +129,7 @@ public class PersonFacadeImpl implements PersonFacade{
             return response;
         }
         try{
-            TUser userDB = new TUser();
+            TUser userDB = userService.selectUserById(updatePersonRequest.getUser().getId());
             User user = updatePersonRequest.getUser();
             userDB.setId(user.getId());
             userDB.setName(user.getUserName());

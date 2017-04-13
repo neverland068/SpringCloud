@@ -1,5 +1,6 @@
 package com.qf.person.request;
 
+import com.alibaba.fastjson.JSON;
 import com.qf.person.bean.User;
 
 /**
@@ -22,7 +23,6 @@ public class UpdatePersonRequest extends CommonRequest {
     public void setUser(User user) {
         this.user = user;
     }
-    
     
 
 }
