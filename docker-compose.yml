@@ -166,7 +166,40 @@ services:
      some.port: 9085
   ports:
     - "9085:9085"    
+
+ gateway1:
+  image: "qf-gateway-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net   
+  hostname: gateway1
+  volumes:
+   - /home/logs/logback/gateway1:/home/logs/logback/qf-gateway
+  privileged: true   
+  depends_on: 
+   - some1
+   - some2
+  environment:
+     gateway.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     gateway.port: 9086
+  ports:
+    - "9086:9086"  
     
+ gateway2:
+  image: "qf-gateway-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net   
+  hostname: gateway2
+  volumes:
+   - /home/logs/logback/gateway2:/home/logs/logback/qf-gateway
+  privileged: true   
+  depends_on: 
+   - some1
+   - some2
+  environment:
+     gateway.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     gateway.port: 9087
+  ports:
+    - "9087:9087"     
      
 networks:
   eureka-net:

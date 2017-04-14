@@ -1,0 +1,8 @@
+server:
+  port: ${gateway.port}
+
+zuul:
+  routes:
+    some-route: 
+      service-id: some
+      path: /some/**
