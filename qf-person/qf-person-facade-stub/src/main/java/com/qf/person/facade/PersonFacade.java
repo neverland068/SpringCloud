@@ -5,7 +5,7 @@ import com.qf.person.request.AddPersonRequest;
 import com.qf.person.request.DeletePersonRequest;
 import com.qf.person.request.UpdatePersonRequest;
 import com.qf.person.response.AddPersonResponse;
-import com.qf.person.response.DeletePersonResponse;
+import com.qf.person.response.DeleteSomeResponse;
 import com.qf.person.response.SelectPersonResponse;
 import com.qf.person.response.UpdatePersonResponse;
 
@@ -15,7 +15,7 @@ import com.qf.person.response.UpdatePersonResponse;
  */
 public interface PersonFacade {
     AddPersonResponse addPerson(AddPersonRequest addPersonRequest);
-    DeletePersonResponse deletePerson(DeletePersonRequest deletePersonRequest);
+    DeleteSomeResponse deletePerson(DeletePersonRequest deletePersonRequest);
     SelectPersonResponse<User> selectPerson(Long id);
     UpdatePersonResponse updatePerson(UpdatePersonRequest updatePersonRequest);
 }

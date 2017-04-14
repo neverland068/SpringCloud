@@ -1,2 +1,2 @@
-com/qf/person/PersonApplication.class
-com/qf/person/controller/PersonController.class
+com\qf\person\impl\PersonFacadeImpl.class
+com\qf\person\PersonApplication.class

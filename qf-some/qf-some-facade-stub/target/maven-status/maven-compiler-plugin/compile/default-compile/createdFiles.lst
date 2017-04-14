@@ -1,0 +1,13 @@
+com\qf\some\request\AddSomeRequest.class
+com\qf\some\facade\SomeFacade.class
+com\qf\some\request\CommonRequest.class
+com\qf\some\constants\ResponseCode.class
+com\qf\some\response\CommonResponse.class
+com\qf\some\bean\SomeUser.class
+com\qf\some\response\AddSomeResponse.class
+com\qf\some\request\UpdateSomeRequest.class
+com\qf\some\response\DeleteSomeResponse.class
+com\qf\some\response\UpdateSomeResponse.class
+com\qf\some\request\DeleteSomeRequest.class
+com\qf\some\response\SelectSomeResponse.class
+com\qf\some\bean\CommonBean.class

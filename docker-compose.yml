@@ -2,7 +2,9 @@ version: "2"
 services:
  mysql:
   image: "mysql"
-  hostname: mysql   
+  hostname: mysql
+  networks: 
+   - eureka-net  
   expose:
    - "3306"
   ports:
@@ -129,6 +131,42 @@ services:
   ports:
     - "9083:9083"    
 
+ some1:
+  image: "qf-some-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net   
+  hostname: some1
+  volumes:
+   - /home/logs/logback/some1:/home/logs/logback/qf-some
+  privileged: true   
+  depends_on: 
+   - person1
+   - person2
+  environment:
+     some.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     some.config.profile: docker
+     some.port: 9084
+  ports:
+    - "9084:9084"
+
+ some2:
+  image: "qf-some-facade:0.0.1-SNAPSHOT"
+  networks:
+   - eureka-net   
+  hostname: some2
+  volumes:
+   - /home/logs/logback/some2:/home/logs/logback/qf-some
+  privileged: true   
+  depends_on: 
+   - person1
+   - person2
+  environment:
+     some.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     some.config.profile: docker
+     some.port: 9085
+  ports:
+    - "9085:9085"    
+    
      
 networks:
   eureka-net:

@@ -20,7 +20,7 @@ import com.qf.person.request.AddPersonRequest;
 import com.qf.person.request.DeletePersonRequest;
 import com.qf.person.request.UpdatePersonRequest;
 import com.qf.person.response.AddPersonResponse;
-import com.qf.person.response.DeletePersonResponse;
+import com.qf.person.response.DeleteSomeResponse;
 import com.qf.person.response.SelectPersonResponse;
 import com.qf.person.response.UpdatePersonResponse;
 import com.qf.person.user.UserService;
@@ -62,8 +62,8 @@ public class PersonFacadeImpl implements PersonFacade{
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public DeletePersonResponse deletePerson(@RequestBody DeletePersonRequest deletePersonRequest) {
-        DeletePersonResponse response = new DeletePersonResponse();
+    public DeleteSomeResponse deletePerson(@RequestBody DeletePersonRequest deletePersonRequest) {
+        DeleteSomeResponse response = new DeleteSomeResponse();
         if(deletePersonRequest==null || deletePersonRequest.getPersonId() == null){
             LOGGER.error("The parameter is invalid>>>>>>>>>>>>>>>>"+JSON.toJSONString(deletePersonRequest));
             response.setResponseCode(ResponseCode.RC_PARAMETER_ERROR.getResponseCode());
@@ -137,8 +137,8 @@ public class PersonFacadeImpl implements PersonFacade{
             Integer result = userService.updateUser(userDB);
             if(result==null || result == 0){
                 LOGGER.error("Update person failed>>>>>>>>>>>>>>>>>>>>.");
-                response.setResponseCode(ResponseCode.RC_PERSON_DELETE_ERROR.getResponseCode());
-                response.setResponseMessage(ResponseCode.RC_PERSON_DELETE_ERROR.getResponseMessage());
+                response.setResponseCode(ResponseCode.RC_PERSON_UPDATE_ERROR.getResponseCode());
+                response.setResponseMessage(ResponseCode.RC_PERSON_UPDATE_ERROR.getResponseMessage());
                 return response;
             }
             response.setResponseCode(ResponseCode.RC_SUCCESS.getResponseCode());

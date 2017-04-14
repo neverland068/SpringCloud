@@ -7,10 +7,8 @@ spring:
       discovery:
         enabled: true
         service-id: CONFIG
-      profile: ${some.config.profile:dev}
+      profile: ${some.config.profile:local}
 eureka:
-  instance:
-    non-secure-port: ${some.port:9083}
   client:
     service-url:
-      defaultZone: http://${eureka.host:localhost}:${eureka.port:9761}/eureka/
+      defaultZone: ${some.eureka.cluster}

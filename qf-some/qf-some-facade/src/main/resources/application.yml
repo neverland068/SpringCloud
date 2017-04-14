@@ -1,2 +1,2 @@
 server:
-  port: ${some.port:9083}
+  port: ${some.port}

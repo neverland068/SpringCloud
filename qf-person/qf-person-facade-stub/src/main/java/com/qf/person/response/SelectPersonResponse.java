@@ -4,20 +4,20 @@ package com.qf.person.response;
  * @author liuchaogang
  * @date 2017年4月12日
  */
-public class SelectPersonResponse<T> extends CommonResponse {
+public class SelectPersonResponse<User> extends CommonResponse {
 
     /**
      * @return
      */
     private static final long serialVersionUID = -7319419590547516624L;
     
-    T user;
+    User user;
 
-    public T getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(T user) {
+    public void setUser(User user) {
         this.user = user;
     }
     
