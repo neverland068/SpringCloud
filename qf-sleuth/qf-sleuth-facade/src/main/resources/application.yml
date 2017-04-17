@@ -1,0 +1,26 @@
+server:
+  port: ${sleuth.port}
+spring:
+  application:
+    name: sleuth
+  sleuth:
+    sampler:
+      percentage: 1.0
+    enabled: false
+  rabbitmq:
+    host: ${sleuth.rabbitmq.host}
+    port: ${sleuth.rabbitmq.port}
+    username: ${sleuth.rabbitmq.username}
+    password: ${sleuth.rabbitmq.password}
+    virtualHost: ${sleuth.rabbitmq.virtualHost}
+  datasource:
+    schema: classpath:/mysql.sql
+    url: ${sleuth.mysql.url}
+    username: ${sleuth.mysql.username}
+    password: ${sleuth.mysql.passowrd}
+    initialize: true
+    continueOnError: true
+
+zipkin:
+  storage:
+    type: mysql

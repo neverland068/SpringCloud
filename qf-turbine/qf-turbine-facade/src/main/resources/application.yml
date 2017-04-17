@@ -1,0 +1,14 @@
+server:
+  port: ${turbine.port}
+
+spring:
+  application:
+    name: turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: ${turbine.eureka.cluster}
+
+turbine:
+  appConfig: ${turbine.appConfig}
+  clusterNameExpression: "'default'"

@@ -1,7 +1,18 @@
 spring:
   application:
     name: gateway
+  sleuth:
+    sampler:
+      percentage: 1.0
+  rabbitmq:
+    host: ${sleuth.rabbitmq.host}
+    port: ${sleuth.rabbitmq.port}
+    username: ${sleuth.rabbitmq.username}
+    password: ${sleuth.rabbitmq.password}
+    virtualHost: ${sleuth.rabbitmq.virtualHost}         
 eureka:
   client:
     service-url:
       defaultZone: ${gateway.eureka.cluster}
+
+ 

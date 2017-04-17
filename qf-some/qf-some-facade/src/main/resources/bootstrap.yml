@@ -8,7 +8,19 @@ spring:
         enabled: true
         service-id: CONFIG
       profile: ${some.config.profile:local}
+  sleuth:
+    sampler:
+      percentage: 1.0
+  rabbitmq:
+    host: ${sleuth.rabbitmq.host}
+    port: ${sleuth.rabbitmq.port}
+    username: ${sleuth.rabbitmq.username}
+    password: ${sleuth.rabbitmq.password}
+    virtualHost: ${sleuth.rabbitmq.virtualHost}    
+        
 eureka:
   client:
     service-url:
       defaultZone: ${some.eureka.cluster}
+ 
+      

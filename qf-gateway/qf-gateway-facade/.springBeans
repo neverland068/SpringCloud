@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.qf.gateway.GatewayApplication</config>
+		<config>java:com.qf.turbine.GatewayApplication</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

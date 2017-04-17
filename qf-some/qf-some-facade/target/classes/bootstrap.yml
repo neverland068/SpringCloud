@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: some
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: ${some.config.profile:local}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${some.eureka.cluster}
