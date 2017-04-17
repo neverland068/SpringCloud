@@ -20,10 +20,7 @@ services:
     - "4370:4369"
     - "1884:1883"
     - "15673:15672"
-    - "25673:25672"
-  environment:
-    - RABBITMQ_DEFAULT_USER=myuser
-    - RABBITMQ_DEFAULT_PASS=mypass    
+    - "25673:25672"  
    
  discovery1:
   image: "qf-discovery-facade:0.0.1-SNAPSHOT"
@@ -123,8 +120,8 @@ services:
      person.port: 9082
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
-     sleuth.rabbitmq.username: myuser
-     sleuth.rabbitmq.password: mypass
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
      sleuth.rabbitmq.virtualHost: /     
   ports:
     - "9082:9082"
@@ -151,8 +148,8 @@ services:
      person.port: 9083
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
-     sleuth.rabbitmq.username: myuser
-     sleuth.rabbitmq.password: mypass
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
      sleuth.rabbitmq.virtualHost: /     
   ports:
     - "9083:9083"    
@@ -174,8 +171,8 @@ services:
      some.port: 9084
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
-     sleuth.rabbitmq.username: myuser
-     sleuth.rabbitmq.password: mypass
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
      sleuth.rabbitmq.virtualHost: /     
   ports:
     - "9084:9084"
@@ -197,8 +194,8 @@ services:
      some.port: 9085
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
-     sleuth.rabbitmq.username: myuser
-     sleuth.rabbitmq.password: mypass
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
      sleuth.rabbitmq.virtualHost: /     
   ports:
     - "9085:9085"    
@@ -219,8 +216,8 @@ services:
      gateway.port: 9086
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
-     sleuth.rabbitmq.username: myuser
-     sleuth.rabbitmq.password: mypass
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
      sleuth.rabbitmq.virtualHost: /     
   ports:
     - "9086:9086"  
@@ -241,8 +238,8 @@ services:
      gateway.port: 9087
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
-     sleuth.rabbitmq.username: myuser
-     sleuth.rabbitmq.password: mypass
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
      sleuth.rabbitmq.virtualHost: /     
   ports:
     - "9087:9087"     
@@ -261,6 +258,7 @@ services:
   environment:
      turbine.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
      turbine.port: 9088
+     turbine.appConfig: some,gateway
   ports:
     - "9088:9088"
 
@@ -295,7 +293,7 @@ services:
    - rabbitmq
   environment:
      sleuth.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
-     sleuth.port: 9090
+     sleuth.port: 8991
      sleuth.turbine.url: http://turbine:9088/turbine.stream
      sleuth.rabbitmq.host: rabbitmq
      sleuth.rabbitmq.port: 5672
@@ -304,9 +302,10 @@ services:
      sleuth.rabbitmq.virtualHost: /
      sleuth.mysql.url: jdbc:mysql://mysql:3306/db_sleuth
      sleuth.mysql.username: root
-     sleuth.mysql.passowrd: passowrd
+     sleuth.mysql.password: password
+     sleuth.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
   ports:
-    - "9090:9090"    
+    - "8991:8991"    
     
     
 networks:

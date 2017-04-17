@@ -17,10 +17,15 @@ spring:
     schema: classpath:/mysql.sql
     url: ${sleuth.mysql.url}
     username: ${sleuth.mysql.username}
-    password: ${sleuth.mysql.passowrd}
+    password: ${sleuth.mysql.password}
     initialize: true
     continueOnError: true
 
 zipkin:
   storage:
     type: mysql
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${sleuth.eureka.cluster}
