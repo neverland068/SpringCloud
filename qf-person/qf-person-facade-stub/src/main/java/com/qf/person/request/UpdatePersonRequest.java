@@ -1,6 +1,5 @@
 package com.qf.person.request;
 
-import com.alibaba.fastjson.JSON;
 import com.qf.person.bean.User;
 
 /**

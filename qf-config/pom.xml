@@ -22,24 +22,19 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        <qf.config.facade.version>0.0.1-SNAPSHOT</qf.config.facade.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
+	<dependencyManagement>
+		<dependencies>
+			<!-- Self dependencies -->
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-config-facade</artifactId>
+				<version>${qf.config.facade.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
     <build>
         <pluginManagement>
             <plugins>

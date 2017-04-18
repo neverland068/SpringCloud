@@ -1,0 +1,39 @@
+server:
+  port: ${msadmin.port}
+
+spring:
+  application:
+    name: msadmin
+  boot:
+    admin:
+      routes:
+        endpoints:         
+        - env
+        - metrics
+        - trace        
+        - dump
+        - jolokia
+        - info
+        - configprops
+        - logfile
+        - refresh
+        - flyway
+        - liquibase
+        - heapdump
+        - loggers
+        - auditevents
+        - hystrix.stream
+        - turbine.stream
+      turbine:
+        clusters:
+        - default
+        url: ${msadmin.turbine.url}
+        
+eureka:
+  client:
+    service-url:
+      defaultZone: ${msadmin.eureka.cluster}
+management:
+  security:
+    enabled: false
+    

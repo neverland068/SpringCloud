@@ -14,11 +14,23 @@
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-parent</artifactId>
+		<!-- Here must be SR4, for SR6 the application can't be run -->
 		<version>Camden.SR4</version>
 		<relativePath />
 	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<qf.sleuth.facade.version>0.0.1-SNAPSHOT</qf.sleuth.facade.version>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-sleuth-facade</artifactId>
+				<version>${qf.sleuth.facade.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -28,11 +40,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-	</properties>
-
 
 	<build>
 		<pluginManagement>

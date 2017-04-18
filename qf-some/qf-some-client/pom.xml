@@ -22,11 +22,11 @@
 		<dependency>
 			<groupId>com.qf</groupId>
 			<artifactId>qf-some-facade-stub</artifactId>
-			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.qf</groupId>
 			<artifactId>qf-person-facade-stub</artifactId>
 		</dependency>
+		
 	</dependencies>
 </project>

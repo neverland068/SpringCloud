@@ -18,6 +18,22 @@
 		<module>qf-person-task</module>
 	</modules>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<qf.person.base.version>0.0.1-SNAPSHOT</qf.person.base.version>
+		<qf.person.dao.version>0.0.1-SNAPSHOT</qf.person.dao.version>
+		<qf.person.cache.version>0.0.1-SNAPSHOT</qf.person.cache.version>
+		<qf.person.service.version>0.0.1-SNAPSHOT</qf.person.service.version>
+		<qf.person.facade.stub.version>0.0.1-SNAPSHOT</qf.person.facade.stub.version>
+		<qf.person.facade.version>0.0.1-SNAPSHOT</qf.person.facade.version>
+		<qf.person.client.version>0.0.1-SNAPSHOT</qf.person.client.version>
+		<qf.person.task.version>0.0.1-SNAPSHOT</qf.person.task.version>
+		<com.alibaba.fastjson.version>1.2.31</com.alibaba.fastjson.version>
+		<org.mybatis.spring.boot.version>1.1.1</org.mybatis.spring.boot.version>
+		<mysql.connector.java>5.1.2</mysql.connector.java>
+	</properties>
+
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-parent</artifactId>
@@ -25,43 +41,68 @@
 		<relativePath />
 	</parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-	</properties>
+	<dependencyManagement>
+		<!-- Self dependency -->
+		<dependencies>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-base</artifactId>
+				<version>${qf.person.base.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-dao</artifactId>
+				<version>${qf.person.dao.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-cache</artifactId>
+				<version>${qf.person.cache.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-service</artifactId>
+				<version>${qf.person.service.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-facade-stub</artifactId>
+				<version>${qf.person.facade.stub.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-facade</artifactId>
+				<version>${qf.person.facade.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-client</artifactId>
+				<version>${qf.person.client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.qf</groupId>
+				<artifactId>qf-person-task</artifactId>
+				<version>${qf.person.task.version}</version>
+			</dependency>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.31</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-stream</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-		</dependency>		
-	</dependencies>
+			<!-- Third party dependencies -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${com.alibaba.fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${org.mybatis.spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.java}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<pluginManagement>

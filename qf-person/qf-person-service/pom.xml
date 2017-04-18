@@ -14,22 +14,26 @@
 		<dependency>
 			<groupId>com.qf</groupId>
 			<artifactId>qf-person-base</artifactId>
-			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.qf</groupId>
 			<artifactId>qf-person-client</artifactId>
-			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.qf</groupId>
 			<artifactId>qf-person-dao</artifactId>
-			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.qf</groupId>
 			<artifactId>qf-person-cache</artifactId>
-			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
 		</dependency>
 	</dependencies>
 </project>
