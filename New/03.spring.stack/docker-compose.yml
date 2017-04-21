@@ -1,0 +1,85 @@
+version: '2'
+
+# networks:
+#   default:
+#     external:
+#       name: demo-net
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+  #    - "5672:5672"
+      - "15672:15672"
+
+  discovery:
+    build: microservices/support/discovery-server
+    restart: always
+    links:
+      - rabbitmq
+    ports:
+      - "8761:8761"
+
+  config:
+    build: microservices/support/config-server
+    restart: always
+    ports:
+      - "8888:8888"
+    volumes:
+      - $PWD/../../qf-cloud-config:/config-repo
+
+  auth:
+    build: microservices/support/auth-server
+    restart: always
+    ports:
+      - "9999:9999"
+
+  #turbine:
+  #  image: magnuslarsson/ms-blog-turbine
+  ##  volumes:
+  ##    - $PWD/logs:/logs
+
+  turbine:
+    build: microservices/support/turbine
+    restart: always
+    ports:
+      - "8989:8989"
+
+  zipkin:
+    build: microservices/support/zipkin-server
+    restart: always
+    ports:
+      - "9411:9411"
+
+  pro:
+    build: microservices/core/product-service
+    restart: always
+    ports:
+      - "8081:8080"
+
+  rec:
+    build: microservices/core/recommendation-service
+    restart: always
+
+  rev:
+    build: microservices/core/review-service
+    restart: always
+
+  composite:
+    build: microservices/composite/product-composite-service
+    restart: always
+    #ports:
+    #  - "80822:8080"
+
+  monitor:
+    build: microservices/support/monitor-dashboard
+    restart: always
+    ports:
+      - "7979:7979"
+
+  edge:
+    build: microservices/support/edge-server
+    restart: always
+    ports:
+      - "443:8765"

@@ -1,0 +1,13 @@
+Config设计：
+将配置文件放在Git中，其组织结构如下：
+qf-config:
+	local:
+		person.xml
+		some.xml
+	docker:
+		person.xml
+		
+
+		
+
+		
