@@ -1,0 +1,35 @@
+version: "2"
+services:
+ config1:
+  image: "qf-config-facade:0.0.1-SNAPSHOT" 
+  hostname: config1
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2    
+  environment:
+     config.port: 9888
+     config.application.name: config
+     config.git.uri: https://github.com/lcgustc/qf-config/
+     config.git.username: liuchaogan@163.com
+     config.git.password: 6515579lcg308
+     config.env: docker
+     config.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/
+  ports:
+    - "9888:9888"
+
+ config2:
+  image: "qf-config-facade:0.0.1-SNAPSHOT"
+  hostname: config2
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2 
+  environment:
+     config.port: 9889
+     config.application.name: config
+     config.git.uri: https://github.com/lcgustc/qf-config/
+     config.git.username: liuchaogan@163.com
+     config.git.password: 6515579lcg308
+     config.env: docker
+     config.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/
+  ports:
+    - "9889:9889"

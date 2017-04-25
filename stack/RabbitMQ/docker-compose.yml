@@ -1,0 +1,11 @@
+version: "2"
+services:
+ rabbitmq:
+  image: bijukunjummen/rabbitmq-server
+  hostname: rabbitmq 
+  ports:
+    - "5673:5672"
+    - "4370:4369"
+    - "1884:1883"
+    - "15673:15672"
+    - "25673:25672"

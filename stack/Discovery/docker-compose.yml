@@ -1,0 +1,21 @@
+version: "2"
+services:
+ discovery1:
+  image: "qf-discovery-facade:0.0.1-SNAPSHOT"
+  hostname: discovery1
+  ports:
+   - "9761:9761"
+  environment:
+     discovery.host: discovery1
+     discovery.port: 9761
+     discovery.defaultZone: http://discovery2:9762/eureka/
+
+ discovery2:
+  image: "qf-discovery-facade:0.0.1-SNAPSHOT"
+  hostname: discovery2
+  ports:
+   - "9762:9762"
+  environment:
+     discovery.host: discovery2
+     discovery.port: 9762
+     discovery.defaultZone: http://discovery1:9761/eureka/

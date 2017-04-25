@@ -1,0 +1,21 @@
+version: "2"
+services:
+ turbine:
+  image: "qf-turbine-facade:0.0.1-SNAPSHOT"   
+  hostname: turbine
+  volumes:
+   - /home/logs/logback/turbine:/home/logs/logback/qf-turbine
+  privileged: true   
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2
+    - SomeStack/some1:some1
+    - SomeStack/some2:some2
+    - GatewayStack/gateway1:gateway1 
+    - GatewayStack/gateway2:gateway2
+  environment:
+     turbine.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     turbine.port: 9088
+     turbine.appConfig: some,gateway
+  ports:
+    - "9088:9088"

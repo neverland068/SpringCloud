@@ -1,0 +1,47 @@
+version: "2"
+services:
+ gateway1:
+  image: "qf-gateway-facade:0.0.1-SNAPSHOT"   
+  hostname: gateway1
+  volumes:
+   - /home/logs/logback/gateway1:/home/logs/logback/qf-gateway
+  privileged: true
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2
+    - SomeStack/some1:some1
+    - SomeStack/some2:some2
+    - RabbitMQStack/rabbitmq :rabbitmq  
+  environment:
+     gateway.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     gateway.port: 9086
+     sleuth.rabbitmq.host: rabbitmq
+     sleuth.rabbitmq.port: 5672
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
+     sleuth.rabbitmq.virtualHost: /     
+  ports:
+    - "9086:9086"  
+    
+ gateway2:
+  image: "qf-gateway-facade:0.0.1-SNAPSHOT" 
+  hostname: gateway2
+  volumes:
+   - /home/logs/logback/gateway2:/home/logs/logback/qf-gateway
+  privileged: true   
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2
+    - SomeStack/some1:some1
+    - SomeStack/some2:some2
+    - RabbitMQStack/rabbitmq :rabbitmq  
+  environment:
+     gateway.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     gateway.port: 9087
+     sleuth.rabbitmq.host: rabbitmq
+     sleuth.rabbitmq.port: 5672
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
+     sleuth.rabbitmq.virtualHost: /     
+  ports:
+    - "9087:9087"

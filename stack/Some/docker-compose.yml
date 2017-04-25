@@ -1,0 +1,53 @@
+version: "2"
+services:
+ some1:
+  image: "qf-some-facade:0.0.1-SNAPSHOT"  
+  hostname: some1
+  volumes:
+   - /home/logs/logback/some1:/home/logs/logback/qf-some
+  privileged: true   
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2
+    - ConfigStack/config1:config1
+    - ConfigStack/config2:config2
+    - PersonStack/person1:person1
+    - PersonStack/person2:person2
+    - RabbitMQStack/rabbitmq :rabbitmq
+  environment:
+     some.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     some.config.profile: docker
+     some.port: 9084
+     sleuth.rabbitmq.host: rabbitmq
+     sleuth.rabbitmq.port: 5672
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
+     sleuth.rabbitmq.virtualHost: /     
+  ports:
+    - "9084:9084"
+
+ some2:
+  image: "qf-some-facade:0.0.1-SNAPSHOT" 
+  hostname: some2
+  volumes:
+   - /home/logs/logback/some2:/home/logs/logback/qf-some
+  privileged: true   
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2
+    - ConfigStack/config1:config1
+    - ConfigStack/config2:config2
+    - PersonStack/person1:person1
+    - PersonStack/person2:person2
+    - RabbitMQStack/rabbitmq :rabbitmq
+  environment:
+     some.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     some.config.profile: docker
+     some.port: 9085
+     sleuth.rabbitmq.host: rabbitmq
+     sleuth.rabbitmq.port: 5672
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
+     sleuth.rabbitmq.virtualHost: /     
+  ports:
+    - "9085:9085"

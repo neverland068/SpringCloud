@@ -1,0 +1,36 @@
+version: "2"
+services:
+ sleuth:
+  image: "qf-sleuth-facade:0.0.1-SNAPSHOT" 
+  hostname: sleuth
+  volumes:
+   - /home/logs/logback/sleuth:/home/logs/logback/qf-sleuth
+  privileged: true   
+  external_links:
+    - DiscoveryStack/discovery1:discovery1
+    - DiscoveryStack/discovery2:discovery2
+    - PersonStack/person1:person1
+    - PersonStack/person2:person2
+    - SomeStack/some1:some1
+    - SomeStack/some2:some2
+    - GatewayStack/gateway1:gateway1 
+    - GatewayStack/gateway2:gateway2
+    - TurbineStack/turbine:turbine
+    - MySQLStack/mysql:mysql
+    - RabbitMQStack/rabbitmq :rabbitmq    
+  environment:
+     sleuth.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+     sleuth.port: 8991
+     sleuth.turbine.url: http://turbine:9088/turbine.stream
+     sleuth.rabbitmq.host: rabbitmq
+     sleuth.rabbitmq.port: 5672
+     sleuth.rabbitmq.username: guest
+     sleuth.rabbitmq.password: guest
+     sleuth.rabbitmq.password: guest
+     sleuth.rabbitmq.virtualHost: /
+     sleuth.mysql.url: jdbc:mysql://mysql:3306/db_sleuth
+     sleuth.mysql.username: root
+     sleuth.mysql.password: password
+     sleuth.eureka.cluster: http://discovery1:9761/eureka/,http://discovery2:9762/eureka/,http://discovery3:9763/eureka/
+  ports:
+    - "8991:8991"
